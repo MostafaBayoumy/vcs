@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "fc220bbf-6097-45d9-bece-a357f8663152",
+		"name": "Visit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "find-one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/visit/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"visit",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find-all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/visit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"visit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": null,\n    \"pet\": {\n        \"id\": 6\n    },\n    \"doctor\": {\n        \"id\": 4\n    },\n    \"clinic\": {\n        \"id\": 3\n    },\n    \"visitDate\": \"2018-06-14T06:30:15.000+00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/visit/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"visit",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 15,\n    \"pet\": {\n        \"id\": 5\n    },\n    \"doctor\": {\n        \"id\": 4\n    },\n    \"clinic\": {\n        \"id\": 3\n    },\n    \"visitDate\": \"2018-06-14T06:30:15.000+00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/visit/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"visit",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/visit/delete/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"visit",
+						"delete",
+						"17"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

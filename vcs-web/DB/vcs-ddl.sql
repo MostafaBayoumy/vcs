@@ -1,0 +1,202 @@
+﻿--------------------------------------------------------
+-- create user `vcs` with password `vcs`
+--------------------------------------------------------
+CREATE USER 'vcs'@'localhost' IDENTIFIED BY 'vcs';
+GRANT ALL PRIVILEGES ON * . * TO 'vcs'@'localhost';
+FLUSH PRIVILEGES;
+
+--------------------------------------------------------
+-- create database `vcsdb`
+--------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS `vcsdb`;
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`GENDER_IDENTITY_LU`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vcsdb`.`GENDER_IDENTITY_LU` (
+    `GENDER_IDENTITY_ID` INT(11) UNSIGNED  NOT NULL AUTO_INCREMENT,
+    `GENDER_IDENTITY_CODE` VARCHAR(150) NOT NULL,
+    `GENDER_IDENTITY_DESCRIPTION` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`GENDER_IDENTITY_ID`),
+    CONSTRAINT gender_identity_code_unique UNIQUE (GENDER_IDENTITY_CODE)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8;
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`ANIMAL_KIND_LU`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vcsdb`.`ANIMAL_KIND_LU` (
+    `ANIMAL_KIND_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `ANIMAL_KIND_CODE` VARCHAR(150) NOT NULL,
+    `ANIMAL_KIND_DESCRIPTION` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`ANIMAL_KIND_ID`),
+    CONSTRAINT animal_kind_code_unique UNIQUE (ANIMAL_KIND_CODE)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8;
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`OWNER`
+-- -----------------------------------------------------
+ CREATE TABLE IF NOT EXISTS `vcsdb`.`OWNER` (
+    `OWNER_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `OWNER_NAME` VARCHAR(150) NOT NULL,
+	`OWNER_EMAIL` VARCHAR(255) NOT NULL,
+ 	`GENDER_IDENTITY_ID` INT(11) UNSIGNED NOT NULL,
+	`OWNER_ADDRESS` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`OWNER_ID`),
+	FOREIGN KEY (`GENDER_IDENTITY_ID`)
+    REFERENCES `vcsdb`.`GENDER_IDENTITY_LU` (`GENDER_IDENTITY_ID`),
+    CONSTRAINT owner_name_identity_unique UNIQUE (OWNER_NAME, GENDER_IDENTITY_ID),
+	CONSTRAINT owner_email_unique UNIQUE (OWNER_EMAIL)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8; 
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`OWNER_PHONE_NUMBER`
+-- -----------------------------------------------------
+ CREATE TABLE IF NOT EXISTS `vcsdb`.`OWNER_PHONE_NUMBER` (
+    `OWNER_PHONE_NUMBER_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`OWNER_PHONE_NUMBER` VARCHAR(20) NOT NULL,
+    `OWNER_ID` INT(11) UNSIGNED NOT NULL,
+    PRIMARY KEY (`OWNER_PHONE_NUMBER_ID`),
+	FOREIGN KEY (`OWNER_ID`)
+    REFERENCES `vcsdb`.`OWNER` (`OWNER_ID`),
+	CONSTRAINT owner_phone_number_unique UNIQUE (OWNER_PHONE_NUMBER)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8;
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`PET`
+-- -----------------------------------------------------
+ CREATE TABLE IF NOT EXISTS `vcsdb`.`PET` (
+    `PET_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `PET_NAME` VARCHAR(150) NOT NULL,
+	`GENDER_IDENTITY_ID` INT(11) UNSIGNED NOT NULL,
+	`PET_BIRTH_DATE` DATE NOT NULL,
+	`ANIMAL_KIND_ID` INT(11) UNSIGNED NOT NULL,
+	`PET_WEIGHT` FLOAT(4,2) UNSIGNED NOT NULL,
+	`OWNER_ID` INT(11) UNSIGNED NOT NULL,
+    PRIMARY KEY (`PET_ID`),
+	FOREIGN KEY (`GENDER_IDENTITY_ID`)
+    REFERENCES `vcsdb`.`GENDER_IDENTITY_LU` (`GENDER_IDENTITY_ID`),
+	FOREIGN KEY (`ANIMAL_KIND_ID`)
+    REFERENCES `vcsdb`.`ANIMAL_KIND_LU` (`ANIMAL_KIND_ID`),
+	FOREIGN KEY (`OWNER_ID`)
+    REFERENCES `vcsdb`.`OWNER` (`OWNER_ID`),
+    CONSTRAINT pet_name_kind_unique UNIQUE (PET_NAME, ANIMAL_KIND_ID)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8; 
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`PET_PHOTO`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vcsdb`.`PET_PHOTO` (
+    `PET_PHOTO_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `PET_PHOTO_NAME` VARCHAR(150) NOT NULL,
+    `PET_PHOTO_LOCATION` VARCHAR(255) NOT NULL,
+	`PET_ID` INT(11) UNSIGNED NOT NULL,
+    PRIMARY KEY (`PET_PHOTO_ID`),
+	FOREIGN KEY (`PET_ID`)
+    REFERENCES `vcsdb`.`PET` (`PET_ID`),
+    CONSTRAINT pet_photo_name_unique UNIQUE (PET_PHOTO_NAME),
+	CONSTRAINT pet_photo_location_unique UNIQUE (PET_PHOTO_LOCATION)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8; 
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`CLINIC`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vcsdb`.`CLINIC` (
+    `CLINIC_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `CLINIC_NAME` VARCHAR(150) NOT NULL,
+	`CLINIC_ADDRESS` VARCHAR(255) NOT NULL,
+	`CLINIC_WORKING_DAYS` VARCHAR(100) NOT NULL,
+	`CLINIC_OPEN_TIME` TIME NOT NULL,
+	`CLINIC_CLOSE_TIME` TIME NOT NULL,
+	`CLINIC_EMAIL` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`CLINIC_ID`),
+    CONSTRAINT clinic_name_kind_unique UNIQUE (CLINIC_NAME)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8;
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`CLINIC_SOCIAL_NETWORK`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vcsdb`.`CLINIC_SOCIAL_NETWORK` (
+    `CLINIC_SOCIAL_NETWORK_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `CLINIC_SOCIAL_NETWORK_CODE` VARCHAR(150) NOT NULL,
+    `CLINIC_SOCIAL_NETWORK_URL` VARCHAR(255) NOT NULL,
+	`CLINIC_ID` INT(11) UNSIGNED NOT NULL,
+    PRIMARY KEY (`CLINIC_SOCIAL_NETWORK_ID`),
+	FOREIGN KEY (`CLINIC_ID`)
+    REFERENCES `vcsdb`.`CLINIC` (`CLINIC_ID`),
+    CONSTRAINT social_network_code_unique UNIQUE (CLINIC_SOCIAL_NETWORK_CODE),
+	CONSTRAINT social_network_url_unique UNIQUE (CLINIC_SOCIAL_NETWORK_URL)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8;
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`CLINIC_PHONE_NUMBER`
+-- -----------------------------------------------------
+ CREATE TABLE IF NOT EXISTS `vcsdb`.`CLINIC_PHONE_NUMBER` (
+    `CLINIC_PHONE_NUMBER_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`CLINIC_PHONE_NUMBER` VARCHAR(20) NOT NULL,
+    `CLINIC_ID` INT(11) UNSIGNED NOT NULL,
+    PRIMARY KEY (`CLINIC_PHONE_NUMBER_ID`),
+	FOREIGN KEY (`CLINIC_ID`)
+    REFERENCES `vcsdb`.`CLINIC` (`CLINIC_ID`),
+    CONSTRAINT clinic_phone_number_unique UNIQUE (CLINIC_PHONE_NUMBER)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8;
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`DOCTOR`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vcsdb`.`DOCTOR` (
+    `DOCTOR_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `DOCTOR_NAME` VARCHAR(150) NOT NULL,
+	`DOCTOR_BIO` VARCHAR(255) NOT NULL,
+	`CLINIC_ID` INT(11) UNSIGNED NOT NULL,
+    PRIMARY KEY (`DOCTOR_ID`),
+	FOREIGN KEY (`CLINIC_ID`)
+    REFERENCES `vcsdb`.`CLINIC` (`CLINIC_ID`),
+    CONSTRAINT doctor_name_unique UNIQUE (DOCTOR_NAME)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8;
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`DOCTOR_PHONE_NUMBER`
+-- -----------------------------------------------------
+ CREATE TABLE IF NOT EXISTS `vcsdb`.`DOCTOR_PHONE_NUMBER` (
+    `DOCTOR_PHONE_NUMBER_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`DOCTOR_PHONE_NUMBER` VARCHAR(20) NOT NULL,
+    `DOCTOR_ID` INT(11) UNSIGNED NOT NULL,
+    PRIMARY KEY (`DOCTOR_PHONE_NUMBER_ID`),
+	FOREIGN KEY (`DOCTOR_ID`)
+    REFERENCES `vcsdb`.`DOCTOR` (`DOCTOR_ID`),
+	CONSTRAINT doctor_phone_number_unique UNIQUE (DOCTOR_PHONE_NUMBER)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8;
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`DOCTOR_PHOTO`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vcsdb`.`DOCTOR_PHOTO` (
+    `DOCTOR_PHOTO_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`DOCTOR_PHOTO_NAME` VARCHAR(150) NOT NULL,
+    `DOCTOR_PHOTO_LOCATION` VARCHAR(255) NOT NULL,
+    `DOCTOR_ID` INT(11) UNSIGNED NOT NULL,
+    PRIMARY KEY (`DOCTOR_PHOTO_ID`),
+	FOREIGN KEY (`DOCTOR_ID`)
+    REFERENCES `vcsdb`.`DOCTOR` (`DOCTOR_ID`),
+    CONSTRAINT doctor_photo_name_unique UNIQUE (DOCTOR_PHOTO_NAME),
+	CONSTRAINT doctor_photo_loc_unique UNIQUE (DOCTOR_PHOTO_LOCATION)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8; 
+
+-- -----------------------------------------------------
+-- Table `vcsdb`.`VISIT`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vcsdb`.`VISIT` (
+    `VISIT_ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`PET_ID` INT(11) UNSIGNED NOT NULL,
+    `DOCTOR_ID` INT(11) UNSIGNED NOT NULL,
+	`CLINIC_ID` INT(11) UNSIGNED NOT NULL,
+	`VISIT_DATE` DATETIME NOT NULL,
+    PRIMARY KEY (`VISIT_ID`),
+	FOREIGN KEY (`PET_ID`)
+    REFERENCES `vcsdb`.`PET` (`PET_ID`),
+	FOREIGN KEY (`DOCTOR_ID`)
+    REFERENCES `vcsdb`.`DOCTOR` (`DOCTOR_ID`),
+	FOREIGN KEY (`CLINIC_ID`)
+    REFERENCES `vcsdb`.`CLINIC` (`CLINIC_ID`),
+    CONSTRAINT clinic_pet_doc_unique UNIQUE (PET_ID, DOCTOR_ID, CLINIC_ID)
+)  ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARACTER SET=UTF8; 

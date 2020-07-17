@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "abec8b0e-3fe9-4b7b-87dc-039f318e864f",
+		"name": "Doctor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "find-one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/doctor/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"doctor",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find-all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/doctor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"doctor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": null,\n    \"name\": \"Dr Mostafa\",\n    \"bio\": \"My Bio\",\n    \"clinic\": {\n        \"id\": 1,\n        \"name\": \"ABALOS MEDICAL CLINIC\",\n        \"address\": \"BRGY. PINYAHAN, QUEZON CITY\",\n        \"workingDays\": \"Monday-Saturday\",\n        \"openTime\": \"08:00:00\",\n        \"closeTime\": \"05:00:00\",\n        \"email\": \"abalos@gmail.com\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/doctor/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"doctor",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign/de-assign",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 9,\n        \"name\": \"Dr Mostafa Bayoumy\",\n        \"bio\": \"My Bio\",\n        \"clinic\": {\n            \"id\": 2\n        }\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/doctor/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"doctor",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete- can also be de-assign",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/doctor/delete/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"doctor",
+						"delete",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-doctors-by-clinicId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/doctor/clinic/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"doctor",
+						"clinic",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

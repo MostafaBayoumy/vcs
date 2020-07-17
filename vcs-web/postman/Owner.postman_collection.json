@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "26e0e515-52d4-4588-8f43-f6edd98c8874",
+		"name": "Owner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "find-one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/owner/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"owner",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find-all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/owner",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"owner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": null,\n    \"name\": \"Mostafa Bayoumy\",\n    \"email\": \"mbayoumy@gmail.com\",\n    \"genderIdentityLu\": {\n        \"id\": 1,\n        \"desc\": \"Male\",\n        \"code\": \"MALE\"\n    },\n    \"address\": \"NasrCity, Abbas Elakkad, 51 Gamal Hmdan\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/owner/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"owner",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 8,\n    \"name\": \"Mostafa Bayoumy\",\n    \"email\": \"mbayoumy@gmail.com\",\n    \"genderIdentityLu\": {\n        \"id\": 1,\n        \"desc\": \"Male\",\n        \"code\": \"MALE\"\n    },\n    \"address\": \"Sheraton, 51 Gamal Hmdan\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/owner/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"owner",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/owner/delete/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"owner",
+						"delete",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

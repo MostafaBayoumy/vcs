@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "bca25981-6b22-4d10-b12d-41fd1d659436",
+		"name": "Clinic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "find-one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/clinic/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"clinic",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find-all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/clinic",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"clinic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": null,\n        \"name\": \"Egypt Clinic\",\n        \"address\": \"Nasr City, Abbas Elakkad, 15 st Gamal Hmdan\",\n        \"workingDays\": \"Wednesday-Sunday\",\n        \"openTime\": \"08:00:00\",\n        \"closeTime\": \"05:00:00\",\n        \"email\": \"egyclinic@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/clinic/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"clinic",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 4,\n        \"name\": \"EGY Clinic\",\n        \"address\": \"Nasr City, Abbas Elakkad, 15 st Gamal Hmdan\",\n        \"workingDays\": \"Wednesday-Sunday\",\n        \"openTime\": \"08:00:00\",\n        \"closeTime\": \"05:00:00\",\n        \"email\": \"egyclinic@gmail.com\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/clinic/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"clinic",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/clinic/delete/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"clinic",
+						"delete",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search-by-number-or-address",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/clinic/search?searchText=60",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"clinic",
+						"search"
+					],
+					"query": [
+						{
+							"key": "searchText",
+							"value": "60"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

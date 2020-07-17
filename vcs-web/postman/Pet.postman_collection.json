@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "4281009f-bb4f-4730-a373-52be9d400ac1",
+		"name": "Pet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "find-one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/pet/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"pet",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find-all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/pet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": null,\n    \"name\": \"Joody\",\n    \"genderIdentityLu\": {\n        \"id\": 2,\n        \"desc\": \"Female\",\n        \"code\": \"FEMALE\"\n    },\n    \"birthDate\": \"2008-07-03T21:00:00.000+00:00\",\n    \"animalKindLu\": {\n        \"id\": 1,\n        \"desc\": \"FISH\",\n        \"code\": \"FISH\"\n    },\n    \"weight\": 14.26,\n    \"owner\": {\n        \"id\": 1,\n        \"name\": \"Ahmed Elsayed\",\n        \"email\": \"aelsayed@gmail.com\",\n        \"genderIdentityLu\": {\n            \"id\": 1,\n            \"desc\": \"Male\",\n            \"code\": \"MALE\"\n        },\n        \"address\": \"1130 N Patsy Dr, Porterville, CA, 93257\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/pet/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"pet",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 8,\n    \"name\": \"Boosy\",\n    \"genderIdentityLu\": {\n        \"id\": 2,\n        \"desc\": \"Female\",\n        \"code\": \"FEMALE\"\n    },\n    \"birthDate\": \"2008-07-03T21:00:00.000+00:00\",\n    \"animalKindLu\": {\n        \"id\": 1,\n        \"desc\": \"FISH\",\n        \"code\": \"FISH\"\n    },\n    \"weight\": 14.26,\n    \"owner\": {\n        \"id\": 1,\n        \"name\": \"Ahmed Elsayed\",\n        \"email\": \"aelsayed@gmail.com\",\n        \"genderIdentityLu\": {\n            \"id\": 1,\n            \"desc\": \"Male\",\n            \"code\": \"MALE\"\n        },\n        \"address\": \"1130 N Patsy Dr, Porterville, CA, 93257\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/pet/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"pet",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/pet/delete/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"pet",
+						"delete",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-owner-pets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/vcs/pet/owner/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vcs",
+						"pet",
+						"owner",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
